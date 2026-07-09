@@ -1,0 +1,42 @@
+from collections import deque
+
+graph = {
+    "Alice": ["John", "Emma"],
+    "John": ["Alice", "David", "Sophia"],
+    "Emma": ["Alice", "Bob"],
+    "David": ["John"],
+    "Sophia": ["John"],
+    "Bob": ["Emma"]
+}
+
+def bfs(start, goal):
+    q, visited = deque([(start, [start])]), set()
+    while q:
+        node, path = q.popleft()
+        if node not in visited:
+            print(node)
+            if node == goal:
+                print("BFS Path:", " -> ".join(path))
+                return
+            visited.add(node)
+            for n in graph[node]:
+                q.append((n, path + [n]))
+
+def dfs(start, goal):
+    s, visited = [(start, [start])], set()
+    while s:
+        node, path = s.pop()
+        if node not in visited:
+            print(node)
+            if node == goal:
+                print("DFS Path:", " -> ".join(path))
+                return
+            visited.add(node)
+            for n in reversed(graph[node]):
+                s.append((n, path + [n]))
+
+print("BFS")
+bfs("Alice", "Bob")
+
+print("\nDFS")
+dfs("Alice", "Bob")
