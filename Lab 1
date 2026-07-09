@@ -1,0 +1,21 @@
+public class SmartPinGenerator {
+    public static void main(String[] args) {
+
+        int[] evenDigits = {0, 2, 4, 6, 8};
+
+        System.out.println("Possible PINs:");
+
+        for (int d1 : evenDigits) {
+            for (int d2 : evenDigits) {
+                for (int d3 : evenDigits) {
+                    for (int d4 : evenDigits) {
+
+                        if (d1 + d2 + d3 + d4 == 16) {
+                            System.out.printf("%d%d%d%d%n", d1, d2, d3, d4);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
